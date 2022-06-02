@@ -5,11 +5,20 @@ import {
   detailProductReducer,
 } from "./reducer/productReducer.js";
 
-const initialState = {};
+import { cartReducer } from "./reducer/cartReducer.js";
+
+const initialState = {
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
+};
 
 const reducer = combineReducers({
   productList: getAllProductReducer,
   productDetails: detailProductReducer,
+  cart: cartReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -5,6 +5,7 @@ import PageNotFound from "./pages/PageNotFound.js";
 import Header from "./component/Header.js";
 import Footer from "./component/Footer.js";
 import ProductDetailsPage from "./pages/ProductDetailsPage.js";
+import CartItem from "./pages/CartItems.js";
 
 export const App = () => {
   return (
@@ -14,6 +15,8 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/cart" element={<CartItem />} />
+          <Route path="/cart/:id" element={<CartItem />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
