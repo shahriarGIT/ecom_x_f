@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Card from "../component/Card.js";
+import Message from "../component/Message.js";
 
 import { addToCart, removeItemFromCart } from "../redux/actions/cartActions.js";
-import Message from "../utils/Message.js";
+import { frontEnd_API } from "../utils/utls.js";
 
 export const CartItems = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,9 @@ export const CartItems = () => {
   const quantity = qty ? Number(qty) : 1;
 
   useEffect(() => {
-    dispatch(addToCart(productId, quantity));
+    if (productId) {
+      dispatch(addToCart(productId, quantity));
+    }
   }, [dispatch, productId, quantity]);
 
   const removeFromCartHandler = (productId) => {
@@ -40,7 +43,11 @@ export const CartItems = () => {
               {cart.cartItems.map((x) => (
                 <li key={x.productId} className="row-flex cart-item">
                   <div>
-                    <img className="vsmall" src={x.image} alt={x.description} />
+                    <img
+                      className="vsmall"
+                      src={`${frontEnd_API + x.image}`}
+                      alt={x.description}
+                    />
                     {console.log(x)}
                   </div>
                   <div>

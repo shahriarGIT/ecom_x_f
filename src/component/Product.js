@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { frontEnd_API } from "../utils/utls.js";
+
 {
   /* <div className="card">
       <Link to={props.product._id}>
@@ -14,6 +17,7 @@ import { Link } from "react-router-dom";
         <p>Review : {props.product.review}</p>
         <p>Price : {props.product.price}</p>
       </div>
+      style={{ maxHeight: "15rem", width: "11rem" }}
     </div> */
 }
 export const Product = (props) => {
@@ -21,7 +25,14 @@ export const Product = (props) => {
     <div className="flip-card">
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <img className="large" src={props.product.image} alt={props.name} />
+          <div className="image_container_front">
+            <img
+              className="large"
+              src={`${frontEnd_API + props.product.image}`}
+              alt={props.name}
+            />
+          </div>
+
           <p>
             <b>{props.product.name}</b>
             <p style={{ color: "black" }}>Price : ${props.product.price}</p>
@@ -29,7 +40,13 @@ export const Product = (props) => {
         </div>
         <div className="flip-card-back">
           <Link to={`product/${props.product._id}`}>
-            <img className="small" src={props.product.image} alt={props.name} />
+            <div className="image_container_back">
+              <img
+                className="small"
+                src={`${frontEnd_API + props.product.image}`}
+                alt={props.name}
+              />
+            </div>
           </Link>
           <Link to={`product/${props.product._id}`}>
             <p>

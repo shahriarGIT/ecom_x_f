@@ -8,7 +8,8 @@ import { getProductDetails } from "../redux/actions/productActions.js";
 
 import Loader from "../component/Loader/LoadingSpinner.js";
 import Card from "../component/Card.js";
-import Message from "../utils/Message.js";
+import Message from "../component/Message.js";
+import { frontEnd_API } from "../utils/utls.js";
 
 export const ProductDetailsPage = () => {
   const params = useParams();
@@ -34,7 +35,11 @@ export const ProductDetailsPage = () => {
     <>
       <div className="col-2">
         {!loading && (
-          <img className="medium" src={product.image} alt={product.name} />
+          <img
+            className="medium"
+            src={`${frontEnd_API + product.image}`}
+            alt={product.name}
+          />
         )}
       </div>
       <div className="col-1">
