@@ -7,6 +7,8 @@ import {
   productUpdate,
 } from "../redux/actions/productActions.js";
 
+import { deleteProduct } from "../redux/actions/productActions.js";
+
 import { PRODUCT_UPDATE_RESET } from "../redux/constants/productContants.js";
 
 const ProductEditpage = () => {
@@ -18,6 +20,7 @@ const ProductEditpage = () => {
   const { loading, error, success } = useSelector(
     (state) => state.updatedProduct
   );
+  const [isChanged, setIsChanged] = useState(false);
 
   const { userInfo } = useSelector((state) => state.signIn);
 

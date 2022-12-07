@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { frontEnd_API } from "../utils/utls.js";
@@ -39,7 +39,7 @@ export const Product = (props) => {
           </p>
         </div>
         <div className="flip-card-back">
-          <Link to={`product/${props.product._id}`}>
+          <Link to={`/product/${props.product._id}`}>
             <div className="image_container_back">
               <img
                 className="small"
@@ -48,7 +48,7 @@ export const Product = (props) => {
               />
             </div>
           </Link>
-          <Link to={`product/${props.product._id}`}>
+          <Link to={`/product/${props.product._id}`}>
             <p>
               <b>{props.product.name}</b>
             </p>

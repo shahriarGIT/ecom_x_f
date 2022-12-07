@@ -5,16 +5,40 @@ const instance = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-export const getAllProducts = () => async (dispatch, getState) => {
-  dispatch({ type: actionType.PRODUCT_LIST_REQUEST });
+export const getAllProducts =
+  ({ name = "", category = "", order = "newest", pageNumber = "" }) =>
+  async (dispatch, getState) => {
+    dispatch({ type: actionType.PRODUCT_LIST_REQUEST });
+
+    try {
+      const { data } = await instance.get(
+        `/products?name=${name}&category=${category}&order=${order}&pageNumber=${pageNumber}`
+      );
+
+      // console.log(data, "from action product");
+      dispatch({ type: actionType.PRODUCT_LIST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: actionType.PRODUCT_LIST_FAIL, payload: error.message });
+    }
+  };
+
+export const getCategories = () => async (dispatch) => {
+  dispatch({ type: actionType.CATEGORY_LIST_REQUEST });
 
   try {
-    const { data } = await instance.get("/products/");
+    const { data } = await instance.get("/products/category");
 
-    // console.log(data, "from action product");
-    dispatch({ type: actionType.PRODUCT_LIST_SUCCESS, payload: data });
+    if (data) {
+      dispatch({ type: actionType.CATEGORY_LIST_SUCCESS, payload: data });
+    }
   } catch (error) {
-    dispatch({ type: actionType.PRODUCT_LIST_FAIL, payload: error.message });
+    dispatch({
+      type: actionType.CATEGORY_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };
 

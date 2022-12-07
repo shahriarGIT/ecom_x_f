@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../component/Message.js";
 import {
@@ -19,6 +19,7 @@ import { frontEnd_API } from "../utils/utls.js";
 const ProductList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const fullPageRef = useRef(null);
 
   const { products, loading, error } = useSelector(
     (state) => state.productList
@@ -48,7 +49,6 @@ const ProductList = () => {
     dispatch(createProduct());
   };
   // src={`http://localhost:5000${product.image}`}
-
   useEffect(() => {
     if (createSuccess) {
       dispatch({ type: PRODUCT_CREATE_RESET });
@@ -60,11 +60,17 @@ const ProductList = () => {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
 
-    dispatch(getAllProducts());
+    dispatch(getAllProducts({}));
   }, [productDeleteSuccess, createSuccess]);
 
+  useEffect(() => {
+    console.log(fullPageRef);
+
+    console.log(fullPageRef.current?.offsetWidth);
+  }, [fullPageRef.current?.offsetWidth]);
+
   return (
-    <div>
+    <div ref={fullPageRef}>
       <div className="row-flex">
         <h2 className="page-header">Product List</h2>
         <button onClick={createProductHandler} className="primary">
@@ -75,7 +81,7 @@ const ProductList = () => {
       {productError && <Message>{productError}</Message>}
       {productLoading && <Loader />}
 
-      <table>
+      <table className="productTable">
         <thead>
           <tr>
             <th>Image</th>
@@ -104,6 +110,7 @@ const ProductList = () => {
                   />
                 </td>
                 <td>{product._id}</td>
+
                 <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td>{product.countInStock}</td>

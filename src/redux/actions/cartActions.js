@@ -47,3 +47,13 @@ export const removeItemFromCart = (productId) => (dispatch, getState) => {
     localStorage.removeItem("cartItems");
   }
 };
+
+export const saveShippingAddress = (details) => (dispatch) => {
+  dispatch({ type: actionType.CART_SAVE_SHIPPING_ADDRESS, payload: details });
+  localStorage.setItem("shippingInfo", JSON.stringify(details));
+};
+
+export const savePaymentMethod = (method) => (dispatch) => {
+  dispatch({ type: actionType.CART_SAVE_PAYMENT_METHOD, payload: method });
+  localStorage.setItem("paymentMethod", method);
+};

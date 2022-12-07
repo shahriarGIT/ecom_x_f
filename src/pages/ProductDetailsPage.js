@@ -22,7 +22,6 @@ export const ProductDetailsPage = () => {
 
   const [qty, setQty] = useState(1);
 
-  console.log(product, loading, error);
   useEffect(() => {
     dispatch(getProductDetails(productId));
   }, [dispatch, productId]);

@@ -12,9 +12,35 @@ export const getAllProductReducer = (
     case actionType.PRODUCT_LIST_SUCCESS:
       return {
         loading: false,
-        products: action.payload,
+        products: action.payload.products,
+        page: action.payload.pageNumber,
+        totalPages: action.payload.totalPages,
       };
     case actionType.PRODUCT_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const getCategoriesReducer = (
+  state = { loading: true, categories: [] },
+  action
+) => {
+  switch (action.type) {
+    case actionType.CATEGORY_LIST_REQUEST:
+      return {
+        loading: true,
+      };
+    case actionType.CATEGORY_LIST_SUCCESS:
+      return {
+        loading: false,
+        category: action.payload,
+      };
+    case actionType.CATEGORY_LIST_FAIL:
       return {
         loading: false,
         error: action.payload,

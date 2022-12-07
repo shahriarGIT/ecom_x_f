@@ -17,6 +17,11 @@ import ProductEditpage from "./pages/ProductEditpage.js";
 import UserEditpage from "./pages/UserEditpage.js";
 import Dashboard from "./pages/Dashboard.js";
 import Profilepage from "./pages/Profilepage.js";
+import ShippingAddressPage from "./pages/ShippingAddressPage.js";
+import PaymentMethodpage from "./pages/PaymentMethodpage.js";
+import PlaceOrderPage from "./pages/PlaceOrderPage.js";
+import OrderDetailsPage from "./pages/OrderDetailsPage.js";
+import SearchPage from "./pages/SearchPage.js";
 
 export const App = () => {
   return (
@@ -25,10 +30,33 @@ export const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/register" element={<SignUpPage />} />
 
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/register" element={<SignUpPage />} />
+          <Route path="/shipping" element={<ShippingAddressPage />} />
+          <Route path="/payment" element={<PaymentMethodpage />} />
+          <Route path="/placeorder" element={<PlaceOrderPage />} />
+          <Route path="/order/:id" element={<OrderDetailsPage />} />
+
+          <Route path="/search/name" element={<SearchPage />} />
+          <Route path="/search/name/:name" element={<SearchPage />} />
+          <Route path="/search/category/:category" element={<SearchPage />} />
+
+          <Route
+            path="/search/name/:name/category/:category"
+            element={<SearchPage />}
+          />
+
+          <Route
+            path="/pageNumber/:pageNumber/name/:name/category/:category/order/:order"
+            element={<Homepage />}
+          />
+          <Route
+            path="/search/pageNumber/:pageNumber/name/:name/category/:category/order/:order"
+            element={<SearchPage />}
+          />
           <Route
             path="/product/:id/edit"
             element={
@@ -61,6 +89,7 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+
           <Route
             path="/cart/:id"
             element={

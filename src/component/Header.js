@@ -5,6 +5,8 @@ import { userSignout } from "../redux/actions/userActions.js";
 
 import { IoIosArrowDropdown } from "react-icons/io";
 
+import SearchBox from "./SearchBox.js";
+
 export const Header = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.signIn);
@@ -18,7 +20,7 @@ export const Header = () => {
       <a href="/" className="brand">
         Ecom X
       </a>
-
+      <SearchBox />
       <ul className="header">
         <li>
           <NavLink

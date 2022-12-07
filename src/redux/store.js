@@ -6,9 +6,15 @@ import {
   productDeleteReducer,
   productUpdateReducer,
   createProductReducer,
+  getCategoriesReducer,
 } from "./reducer/productReducer.js";
 
 import { cartReducer } from "./reducer/cartReducer.js";
+
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+} from "./reducer/orderReducer.js";
 
 import {
   userUpdateReducer,
@@ -30,9 +36,15 @@ const initialState = {
       : null,
   },
   cart: {
+    shipping: localStorage.getItem("shippingInfo")
+      ? JSON.parse(localStorage.getItem("shippingInfo"))
+      : {},
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
+    payment: localStorage.getItem("paymentMethod")
+      ? localStorage.getItem("paymentMethod")
+      : "PayPal",
   },
 };
 
@@ -50,6 +62,9 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   updatedUserProfile: userProfileUpdateReducer,
   userDetail: userDetailReducer,
+  createdOrder: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  categories: getCategoriesReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

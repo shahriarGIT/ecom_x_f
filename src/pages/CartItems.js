@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Card from "../component/Card.js";
 import Message from "../component/Message.js";
 
@@ -9,15 +9,22 @@ import { frontEnd_API } from "../utils/utls.js";
 
 export const CartItems = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
   const { id: productId } = params;
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, error } = cart;
-  console.log(cart.cartItems);
+  // console.log(cart.cartItems);
   const { search } = useLocation();
   const qty = new URLSearchParams(search).get("qty");
   const quantity = qty ? Number(qty) : 1;
+
+  let subtotal = 0;
+
+  const checoutHandler = () => {
+    navigate("/shipping");
+  };
 
   useEffect(() => {
     if (productId) {
@@ -95,7 +102,25 @@ export const CartItems = () => {
       </div>
       <div className="col-1">
         <Card>
-          <p>Sub Total</p>
+          <h2>Sub Total</h2>
+          <ul>
+            {cart.cartItems.map((x) => (
+              <li>
+                <p>
+                  {x.name} = {x.quantity} x {x.price} = {x.quantity * x.price}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p>
+            {cartItems.forEach(
+              (item) => (subtotal = subtotal + item.price * item.quantity)
+            )}
+          </p>
+          <p> Sub Total :{subtotal}</p>
+          <button onClick={checoutHandler} className="primary block">
+            Chechout
+          </button>
         </Card>
       </div>
     </div>
