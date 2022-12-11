@@ -8,7 +8,7 @@ import axios from "axios";
 // });
 
 const instance = axios.create({
-  baseURL: "https://ecom-x-b.vercel.app:5000/api",
+  baseURL: "https://ecom-x-b.vercel.app/api",
 });
 
 export const createOrder = (order) => async (dispatch, getState) => {
