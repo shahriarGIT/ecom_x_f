@@ -1,8 +1,12 @@
 import * as actionType from "../constants/productContants.js";
 import axios from "axios";
 
+// const instance = axios.create({
+//   baseURL: "http://localhost:5000/api",
+// });
+
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://ecom-x-b.vercel.app:5000/api",
 });
 
 export const getAllProducts =
