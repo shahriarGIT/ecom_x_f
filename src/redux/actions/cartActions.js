@@ -1,8 +1,12 @@
 import axios from "axios";
 import * as actionType from "../constants/cartConstants.js";
 
+// const instance = axios.create({
+//   baseURL: "http://localhost:5000/api",
+// });
+
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://ecom-x-b.vercel.app:5000/api",
 });
 
 export const addToCart =
