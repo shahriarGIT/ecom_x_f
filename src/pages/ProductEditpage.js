@@ -88,9 +88,29 @@ const ProductEditpage = () => {
   };
 
   const instance = axios.create({
-    baseURL: "http://localhost:5000/api",
+    // baseURL: "http://localhost:5000/api",
+    baseURL: "https://ecom-x-b.vercel.app/api",
   });
 
+  // const imageHandler = async (e) => {
+  //   setImageLoading(true);
+  //   const imageFile = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append("image", imageFile);
+  //   try {
+  //     const { data } = await instance.post("/uploads", formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: `Bearer ${userInfo.token}`,
+  //       },
+  //     });
+  //     setImageLoading(false);
+  //     setImage(data);
+  //   } catch (error) {
+  //     setImageLoading(false);
+  //     setImageError(error.message);
+  //   }
+  // };
   const imageHandler = async (e) => {
     setImageLoading(true);
     const imageFile = e.target.files[0];
@@ -110,6 +130,7 @@ const ProductEditpage = () => {
       setImageError(error.message);
     }
   };
+
   return (
     <div>
       <form onSubmit={submithandler}>
