@@ -89,7 +89,7 @@ const ProductEditpage = () => {
 
   const instance = axios.create({
     // baseURL: "http://localhost:5000/api",
-    baseURL: "https://ecom-x-b.vercel.app/api",
+    baseURL: "https://ecom-x-b.vercel.app/api/uploads",
   });
 
   // const imageHandler = async (e) => {
