@@ -9,7 +9,7 @@ import axios from "axios";
 // });
 
 const instance = axios.create({
-  baseURL: `${frontEnd_API}/api`,
+  baseURL: `${frontEnd_API}`,
 });
 
 export const createOrder = (order) => async (dispatch, getState) => {

@@ -7,7 +7,7 @@ import { frontEnd_API } from "../../utils/utls.js";
 // });
 
 const instance = axios.create({
-  baseURL: `${frontEnd_API}/api`,
+  baseURL: `${frontEnd_API}`,
 });
 
 export const userSignUp = (username, email, password) => async (dispatch) => {
