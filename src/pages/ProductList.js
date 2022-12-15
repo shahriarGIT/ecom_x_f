@@ -105,7 +105,7 @@ const ProductList = () => {
                 <td>
                   <img
                     className="vsmall"
-                    src={`${frontEnd_API + product.image}`}
+                    src={`${product.imageURL}`}
                     alt={product.name}
                   />
                 </td>

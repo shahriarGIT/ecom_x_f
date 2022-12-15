@@ -80,7 +80,7 @@ const PlaceOrderPage = () => {
                   <div>
                     <img
                       className="vsmall"
-                      src={`${frontEnd_API + x.image}`}
+                      src={`${x.imageURL}`}
                       alt={x.description}
                     />
                     {console.log(x)}

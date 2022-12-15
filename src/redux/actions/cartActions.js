@@ -1,12 +1,13 @@
 import axios from "axios";
 import * as actionType from "../constants/cartConstants.js";
+import { frontEnd_API } from "../../utils/utls.js";
 
 // const instance = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
 
 const instance = axios.create({
-  baseURL: "https://ecom-x-b.vercel.app/api",
+  baseURL: `${frontEnd_API}/api`,
 });
 
 export const addToCart =
@@ -28,6 +29,7 @@ export const addToCart =
       payload: {
         name: data.name,
         image: data.image,
+        imageURL: data.imageURL,
         price: data.price,
         countInStock: data.countInStock,
         productId: data._id,

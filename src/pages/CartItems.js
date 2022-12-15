@@ -35,7 +35,6 @@ export const CartItems = () => {
   const removeFromCartHandler = (productId) => {
     dispatch(removeItemFromCart(productId));
   };
-
   return (
     <div className="row-flex top">
       <div className="col-3">
@@ -52,7 +51,7 @@ export const CartItems = () => {
                   <div>
                     <img
                       className="vsmall"
-                      src={`${frontEnd_API + x.image}`}
+                      src={`${x.imageURL}`}
                       alt={x.description}
                     />
                     {console.log(x)}

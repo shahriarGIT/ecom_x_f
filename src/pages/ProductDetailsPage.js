@@ -36,7 +36,7 @@ export const ProductDetailsPage = () => {
         {!loading && (
           <img
             className="medium"
-            src={`${frontEnd_API + product.image}`}
+            src={`${product.imageURL}`}
             alt={product.name}
           />
         )}

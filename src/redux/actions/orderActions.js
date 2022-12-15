@@ -1,5 +1,6 @@
 import * as actionType from "../constants/orderConstants.js";
 import { CART_EMPTY } from "../constants/cartConstants.js";
+import { frontEnd_API } from "../../utils/utls.js";
 
 import axios from "axios";
 
@@ -8,7 +9,7 @@ import axios from "axios";
 // });
 
 const instance = axios.create({
-  baseURL: "https://ecom-x-b.vercel.app/api",
+  baseURL: `${frontEnd_API}/api`,
 });
 
 export const createOrder = (order) => async (dispatch, getState) => {

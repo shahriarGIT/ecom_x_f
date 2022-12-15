@@ -1,12 +1,13 @@
 import * as actionType from "../constants/productContants.js";
 import axios from "axios";
+import { frontEnd_API } from "../../utils/utls.js";
 
 // const instance = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
 
 const instance = axios.create({
-  baseURL: "https://ecom-x-b.vercel.app/api",
+  baseURL: `${frontEnd_API}/api`,
 });
 
 export const getAllProducts =
@@ -96,28 +97,35 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
   }
 };
 
-export const productUpdate = (product) => async (dispatch, getState) => {
-  dispatch({ type: actionType.PRODUCT_UPDATE_REQUEST, payload: product });
+export const productUpdate =
+  (product, formData) => async (dispatch, getState) => {
+    dispatch({ type: actionType.PRODUCT_UPDATE_REQUEST, payload: product });
 
-  const { userInfo } = getState().signIn;
-  try {
-    const { data } = await instance.put(`/products/${product._id}`, product, {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    });
+    console.log(product);
+    const { userInfo } = getState().signIn;
+    try {
+      const { data } = await instance.put(
+        `/products/${product._id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-    dispatch({ type: actionType.PRODUCT_UPDATE_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: actionType.PRODUCT_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({ type: actionType.PRODUCT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: actionType.PRODUCT_UPDATE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const createProduct = () => async (dispatch, getState) => {
   dispatch({ type: actionType.PRODUCT_CREATE_REQUEST });

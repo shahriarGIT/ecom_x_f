@@ -1,12 +1,13 @@
 import * as actionEvent from "../constants/userConstants.js";
 import axios from "axios";
+import { frontEnd_API } from "../../utils/utls.js";
 
 // const instance = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
 
 const instance = axios.create({
-  baseURL: "https://ecom-x-b.vercel.app/api",
+  baseURL: `${frontEnd_API}/api`,
 });
 
 export const userSignUp = (username, email, password) => async (dispatch) => {

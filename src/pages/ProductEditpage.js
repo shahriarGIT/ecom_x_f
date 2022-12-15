@@ -35,6 +35,7 @@ const ProductEditpage = () => {
   const [countInStock, setCountInStock] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  // const [imgFile, setImgFile] = useState("");
 
   const [imageLoading, setImageLoading] = useState("false");
   const [imageError, setImageError] = useState("");
@@ -56,24 +57,66 @@ const ProductEditpage = () => {
       setCategory(product.category);
       setDescription(product.description);
       setCountInStock(product.countInStock);
-      setImage(product.image);
+      // setImage(product.image);
     }
   }, [productId, product, success]);
 
-  const submithandler = (e) => {
+  const submithandler = async (e) => {
     e.preventDefault();
 
+    // setImageLoading(true);
+    // const imageFile = e.target.files[0];
+    // formData.append("image", imageFile);
+    const formData = new FormData();
+
+    formData.append("_id", productId);
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("category", category);
+    formData.append("brand", brand);
+    formData.append("countInStock", countInStock);
+    formData.append("description", description);
+    formData.append("image", image);
+
+    console.log(image, "frm sub");
+    // try {
+    //   const { data } = await instance.post("/uploads", formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //       Authorization: `Bearer ${userInfo.token}`,
+    //     },
+    //   });
+    //   setImageLoading(false);
+    //   setImage(data);
+    // } catch (error) {
+    //   setImageLoading(false);
+    //   setImageError(error.message);
+    // }
+
+    // productUpdate({
+    //   _id: productId,
+    //   name,
+    //   price,
+    //   category,
+    //   brand,
+    //   countInStock,
+    //   description,
+    //   formData,
+    // })
+
     dispatch(
-      productUpdate({
-        _id: productId,
-        name,
-        price,
-        category,
-        brand,
-        countInStock,
-        description,
-        image,
-      })
+      productUpdate(
+        {
+          _id: productId,
+          name,
+          price,
+          category,
+          brand,
+          countInStock,
+          description,
+        },
+        formData
+      )
     );
 
     // console.log({
@@ -88,8 +131,8 @@ const ProductEditpage = () => {
   };
 
   const instance = axios.create({
-    // baseURL: "http://localhost:5000/api",
-    baseURL: "https://ecom-x-b.vercel.app/api/uploads",
+    baseURL: "http://localhost:5000/api",
+    // baseURL: "https://ecom-x-b.vercel.app/api/uploads",
   });
 
   // const imageHandler = async (e) => {
@@ -111,24 +154,26 @@ const ProductEditpage = () => {
   //     setImageError(error.message);
   //   }
   // };
-  const imageHandler = async (e) => {
-    setImageLoading(true);
-    const imageFile = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", imageFile);
-    try {
-      const { data } = await instance.post("/uploads", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      });
-      setImageLoading(false);
-      setImage(data);
-    } catch (error) {
-      setImageLoading(false);
-      setImageError(error.message);
-    }
+  const imageHandler = (e) => {
+    // setImageLoading(true);
+    // const imageFile = e.target.files[0];
+    // const formData = new FormData();
+    // formData.append("image", imageFile);
+    // try {
+    //   const { data } = await instance.post("/uploads", formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //       Authorization: `Bearer ${userInfo.token}`,
+    //     },
+    //   });
+    //   setImageLoading(false);
+    //   setImage(data);
+    // } catch (error) {
+    //   setImageLoading(false);
+    //   setImageError(error.message);
+    // }
+    // const imageFile = e.target.files[0];
+    // formData.append("image", image);
   };
 
   return (
@@ -194,7 +239,7 @@ const ProductEditpage = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="image">Image</label>
           <input
             type="text"
@@ -203,14 +248,14 @@ const ProductEditpage = () => {
             placeholder="Choose Image"
             onChange={(e) => setImage(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
-          <label htmlFor="imageFile">Image</label>
+          <label htmlFor="image">Image</label>
           <input
             type="file"
-            id="imageFile"
+            id="image"
             placeholder="Choose Image"
-            onChange={imageHandler}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
         <div>

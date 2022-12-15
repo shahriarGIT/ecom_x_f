@@ -21,6 +21,7 @@ import { frontEnd_API } from "../utils/utls.js";
     </div> */
 }
 export const Product = (props) => {
+  console.log(props);
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -28,13 +29,13 @@ export const Product = (props) => {
           <div className="image_container_front">
             <img
               className="large"
-              src={`${frontEnd_API + props.product.image}`}
+              src={`${props.product.imageURL}`}
               alt={props.name}
             />
           </div>
 
           <p>
-            <b>{props.product.name}</b>
+            <b>{props.product.name.slice(0, 10) + "..."}</b>
             <p style={{ color: "black" }}>Price : ${props.product.price}</p>
           </p>
         </div>
@@ -43,14 +44,14 @@ export const Product = (props) => {
             <div className="image_container_back">
               <img
                 className="small"
-                src={`${frontEnd_API + props.product.image}`}
+                src={`${props.product.imageURL}`}
                 alt={props.name}
               />
             </div>
           </Link>
           <Link to={`/product/${props.product._id}`}>
             <p>
-              <b>{props.product.name}</b>
+              <b>{props.product.name.slice(0, 10) + "..."}</b>
             </p>
           </Link>
           <p style={{ color: "black" }}>Reviews : {props.product.numReviews}</p>
