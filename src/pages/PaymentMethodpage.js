@@ -19,7 +19,7 @@ const PaymentMethodpage = () => {
     }
   }, [shipping.address]);
 
-  console.log(paymentMethod);
+  // console.log(paymentMethod);
   const submitHandler = (e) => {
     e.preventDefault();
 

@@ -31,55 +31,59 @@ const SignUpPage = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitHandler}>
+      <form className="signUp__page" onSubmit={onSubmitHandler}>
         {loading ? (
           <Loader />
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : null}
+        {!loading && (
+          <>
+            <div>
+              <label>Register</label>
+            </div>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter Name"
+                required
+              />
+            </div>
 
-        <div>
-          <label>Register</label>
-        </div>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Name"
-            required
-          />
-        </div>
+            <div>
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Enter Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password"
+                required
+              />
+            </div>
 
-        <div>
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Enter Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Password"
-            required
-          />
-        </div>
-        <div>
-          <button className="primary" type="submit">
-            Register
-          </button>
-        </div>
+            <div>
+              <button className="primary" type="submit">
+                Register
+              </button>
+            </div>
+          </>
+        )}
       </form>
     </div>
   );

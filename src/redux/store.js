@@ -29,6 +29,8 @@ import {
   userDeleteReducer,
 } from "./reducer/userReducer.js";
 
+import { menuReducer } from "./reducer/menuReducer.js";
+
 const initialState = {
   signIn: {
     userInfo: localStorage.getItem("userInfo")
@@ -65,6 +67,7 @@ const reducer = combineReducers({
   createdOrder: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   categories: getCategoriesReducer,
+  menu: menuReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -21,21 +21,21 @@ import { frontEnd_API } from "../utils/utls.js";
     </div> */
 }
 export const Product = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <div className="image_container_front">
             <img
-              className="large"
+              className="productImg"
               src={`${props.product.imageURL}`}
               alt={props.name}
             />
           </div>
 
           <p>
-            <b>{props.product.name.slice(0, 10) + "..."}</b>
+            <b>{props.product.name.slice(0, 15) + "..."}</b>
             <p style={{ color: "black" }}>Price : ${props.product.price}</p>
           </p>
         </div>
@@ -51,7 +51,7 @@ export const Product = (props) => {
           </Link>
           <Link to={`/product/${props.product._id}`}>
             <p>
-              <b>{props.product.name.slice(0, 10) + "..."}</b>
+              <b>{props.product.name.slice(0, 15) + "..."}</b>
             </p>
           </Link>
           <p style={{ color: "black" }}>Reviews : {props.product.numReviews}</p>

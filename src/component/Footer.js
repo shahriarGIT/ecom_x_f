@@ -1,7 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export const Footer = () => {
-  return <footer>Copyright 2022</footer>;
+  const productList = useSelector((state) => state.productList);
+
+  const { loading } = productList;
+
+  return !loading && <footer>Copyright 2023 | Shahriar.js</footer>;
 };
 
 export default Footer;

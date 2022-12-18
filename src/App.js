@@ -22,12 +22,31 @@ import PaymentMethodpage from "./pages/PaymentMethodpage.js";
 import PlaceOrderPage from "./pages/PlaceOrderPage.js";
 import OrderDetailsPage from "./pages/OrderDetailsPage.js";
 import SearchPage from "./pages/SearchPage.js";
+import MobileMenu from "./component/MobileMenu.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleMobileMenuStatusOn,
+  toggleMobileMenuStatusOff,
+} from "./redux/actions/menuAction.js";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const { menuActive } = useSelector((state) => state.menu);
+
+  const toggleMenuOn = () => {
+    dispatch(toggleMobileMenuStatusOn());
+  };
+
+  const toggleMenuOff = () => {
+    dispatch(toggleMobileMenuStatusOff());
+  };
+
   return (
     <div>
       <Header />
-      <main>
+      {menuActive && <MobileMenu />}
+
+      <main onClick={toggleMenuOff}>
         <Routes>
           <Route path="/" element={<Homepage />} />
 

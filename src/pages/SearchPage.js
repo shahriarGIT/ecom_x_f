@@ -78,17 +78,20 @@ const SearchPage = (props) => {
         <>
           {userInfo && cart.cartItems.length !== 0 ? <CartTray /> : null}
           {
-            <div className="row-flex top">
+            <div className="row-flex top center">
               <div>
                 <ul className="category_list">
                   <li>
+                    <p>Select Category</p>
                     <Link to={getFilteredURL({ category: "all", name: "all" })}>
                       Any
                     </Link>
                   </li>
                   {productCategory?.map((c) => (
-                    <li keys={c}>
-                      <Link to={getFilteredURL({ category: c })}>{c}</Link>
+                    <li>
+                      <Link key={c} to={getFilteredURL({ category: c })}>
+                        {c}
+                      </Link>
                     </li>
                   ))}
                 </ul>

@@ -23,7 +23,7 @@ const Pagination = ({ pageNumber, totalPages, products, getFilteredURL }) => {
         ) : null}
         {[...Array(totalPages).keys()].map((p) => (
           <NavLink
-            keys={p + 1} // p + 1 bcoz array starts from 0 index
+            key={p + 1} // p + 1 bcoz array starts from 0 index
             style={{
               color: `${Number(pageNumber) === p + 1 ? "#2387f8" : ""}`,
               fontSize: `${Number(pageNumber) === p + 1 ? "1.4rem" : ""}  `,

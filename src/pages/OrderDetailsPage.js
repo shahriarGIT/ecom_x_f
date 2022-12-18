@@ -11,7 +11,7 @@ const OrderDetailsPage = () => {
   const { id: orderId } = useParams();
   const { order, loading, error } = useSelector((state) => state.orderDetails);
 
-  console.log(order, "orders");
+  // console.log(order, "orders");
   useEffect(() => {
     dispatch({ type: CART_EMPTY });
     dispatch(getOrderDetails(orderId));
@@ -19,7 +19,7 @@ const OrderDetailsPage = () => {
   return (
     <Card>
       <h2>Order Details</h2>
-      <p>Order ID : {order?._id}</p>
+      <p>Order ID : {orderId}</p>
     </Card>
   );
 };

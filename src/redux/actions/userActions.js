@@ -10,11 +10,11 @@ const instance = axios.create({
   baseURL: `${frontEnd_API}`,
 });
 
-export const userSignUp = (username, email, password) => async (dispatch) => {
+export const userSignUp = (name, email, password) => async (dispatch) => {
   dispatch({ type: actionEvent.USER_SIGN_UP_REQUEST });
   try {
     const { data } = await instance.post("/user/register", {
-      username,
+      name,
       email,
       password,
     });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { userSignout } from "../redux/actions/userActions.js";
@@ -6,6 +6,10 @@ import { userSignout } from "../redux/actions/userActions.js";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 import SearchBox from "./SearchBox.js";
+import {
+  toggleMobileMenuStatus,
+  toggleMobileMenuStatusOn,
+} from "../redux/actions/menuAction.js";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -13,6 +17,10 @@ export const Header = () => {
 
   const onSignOutHandler = () => {
     dispatch(userSignout());
+  };
+
+  const isActiveDistach = () => {
+    dispatch(toggleMobileMenuStatus());
   };
 
   return (
@@ -24,7 +32,7 @@ export const Header = () => {
       <ul className="header">
         <li>
           <NavLink
-            className={(isActive) =>
+            className={({ isActive }) =>
               isActive ? "header-item-active" : "header-item"
             }
             to="/"
@@ -71,7 +79,8 @@ export const Header = () => {
           <div className="dropdown">
             <li>
               <Link className="header-item" to="#">
-                {userInfo.name} <IoIosArrowDropdown className="dropdown-icon" />
+                {userInfo.name}{" "}
+                <IoIosArrowDropdown className="dropdown-icon dropdown-icon-active" />
               </Link>
             </li>
 
@@ -102,6 +111,9 @@ export const Header = () => {
           </li>
         )}
       </ul>
+      <div className="mobile__menu__header">
+        <button onClick={isActiveDistach}>&#8595;</button>
+      </div>
     </header>
   );
 };

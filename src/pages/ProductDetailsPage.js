@@ -35,7 +35,7 @@ export const ProductDetailsPage = () => {
       <div className="col-2">
         {!loading && (
           <img
-            className="medium"
+            className="large"
             src={`${product.imageURL}`}
             alt={product.name}
           />

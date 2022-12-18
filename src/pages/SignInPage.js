@@ -18,7 +18,6 @@ const SignInPage = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(userSignIn(email, password));
-    console.log(email, " ", password);
   };
 
   useEffect(() => {
@@ -29,45 +28,48 @@ const SignInPage = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitHandler}>
+      <form className="signIn__page" onSubmit={onSubmitHandler}>
         {loading ? <Loader /> : error ? <Message>{error}</Message> : null}
+        {!loading && (
+          <>
+            <div>
+              <label>Sign In</label>
+            </div>
 
-        <div>
-          <label>Sign In</label>
-        </div>
+            <div>
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Email"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Enter Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password"
+                required
+              />
+            </div>
+            <div>
+              <button className="primary" type="submit">
+                Sign In
+              </button>
+            </div>
 
-        <div>
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Email"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Enter Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter Password"
-            required
-          />
-        </div>
-        <div>
-          <button className="primary" type="submit">
-            Sign In
-          </button>
-        </div>
-
-        <div>
-          <p>Create Account. </p>
-          <Link to="/register">Register</Link>
-        </div>
+            <div className="register__button">
+              <p>Create Account. </p>
+              <Link to="/register">Register</Link>
+            </div>
+          </>
+        )}
       </form>
     </div>
   );
