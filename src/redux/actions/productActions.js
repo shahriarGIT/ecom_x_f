@@ -119,7 +119,7 @@ export const productUpdate =
       dispatch({
         type: actionType.PRODUCT_UPDATE_FAIL,
         payload:
-          error.response && error.response.data.message
+          error?.response && error?.response?.data.message
             ? error.response.data.message
             : error.message,
       });
