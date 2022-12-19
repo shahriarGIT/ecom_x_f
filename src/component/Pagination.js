@@ -11,7 +11,7 @@ const Pagination = ({ pageNumber, totalPages, products, getFilteredURL }) => {
 
   return (
     <div className="row-flex bottom">
-      <div className={products.length === 0 ? "" : "paginationBox"}>
+      <div className={products?.length === 0 ? "" : "paginationBox"}>
         {Number(pageNumber) - 1 > 0 ? (
           <NavLink
             to={getFilteredURL({

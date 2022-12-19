@@ -20,7 +20,7 @@ const SignUpPage = () => {
     e.preventDefault();
 
     dispatch(userSignUp(name, email, password));
-    console.log(email, " ", password);
+    // console.log(email, " ", password);
   };
 
   useEffect(() => {

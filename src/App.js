@@ -143,6 +143,14 @@ export const App = () => {
               </AdminRoute>
             }
           />
+          <Route
+            path="/pageNumber/:pageNumber"
+            element={
+              <AdminRoute>
+                <ProductList />
+              </AdminRoute>
+            }
+          />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

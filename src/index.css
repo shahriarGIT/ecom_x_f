@@ -87,6 +87,11 @@ form {
 
 .register__button a {
   width: 6rem;
+  color: #7858a6;
+}
+
+.category_list a {
+  color: #5534a5;
 }
 
 div > input,
@@ -156,7 +161,7 @@ header .brand {
   text-decoration: none;
   font-size: var(--nav-fontsize-1);
   letter-spacing: 0px;
-  font-weight: 300;
+  /* font-weight: 300; */
   margin-left: var(--margin-2);
   color: white;
 }
@@ -209,7 +214,8 @@ header .brand {
 }
 
 .dropdown-icon-active {
-  color: rgb(57, 233, 57);
+  color: rgb(0, 241, 101);
+
   stroke-width: 30;
 }
 
@@ -280,6 +286,11 @@ table thead {
 }
 
 .alert-info {
+  background-color: #beb6d3;
+  /* border: 2px rgb(49, 118, 137) solid; */
+}
+
+.alert-success {
   background-color: #d1ffb4;
   /* border: 2px rgb(49, 118, 137) solid; */
 }

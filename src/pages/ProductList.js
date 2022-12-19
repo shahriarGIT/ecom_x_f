@@ -8,22 +8,37 @@ import {
 import Loader from "../component/Loader/LoadingSpinner.js";
 
 import { deleteProduct } from "../redux/actions/productActions.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   PRODUCT_CREATE_RESET,
   PRODUCT_DELETE_RESET,
 } from "../redux/constants/productContants.js";
 
 import { frontEnd_API } from "../utils/utls.js";
+import Pagination from "../component/Pagination.js";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const fullPageRef = useRef(null);
 
-  const { products, loading, error } = useSelector(
-    (state) => state.productList
-  );
+  // const { products, loading, error } = useSelector(
+  //   (state) => state.productList
+  // );
+  const productList = useSelector((state) => state.productList);
+
+  const { products, page, totalPages, error, loading } = productList;
+
+  let { pageNumber = 1 } = useParams();
+
+  const getFilteredURL = (filter) => {
+    // const filteredName = filter.name || name;
+    // const filteredCategory = filter.category || category;
+    // const sortOrder = filter.order || order;
+    const page = filter.page || pageNumber;
+
+    return `/pageNumber/${page}`;
+  };
 
   const {
     success: productDeleteSuccess,
@@ -60,8 +75,8 @@ const ProductList = () => {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
 
-    dispatch(getAllProducts({}));
-  }, [productDeleteSuccess, createSuccess]);
+    dispatch(getAllProducts({ pageNumber }));
+  }, [productDeleteSuccess, createSuccess, pageNumber]);
 
   useEffect(() => {
     // console.log(fullPageRef);
@@ -129,6 +144,12 @@ const ProductList = () => {
           )}
         </tbody>
       </table>
+      <Pagination
+        pageNumber={pageNumber}
+        totalPages={totalPages}
+        products={products}
+        getFilteredURL={getFilteredURL}
+      />
     </div>
   );
 };

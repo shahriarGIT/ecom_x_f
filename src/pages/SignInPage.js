@@ -29,7 +29,11 @@ const SignInPage = () => {
   return (
     <div>
       <form className="signIn__page" onSubmit={onSubmitHandler}>
-        {loading ? <Loader /> : error ? <Message>{error}</Message> : null}
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant={"danger"}>{error}</Message>
+        ) : null}
         {!loading && (
           <>
             <div>
