@@ -101,7 +101,6 @@ export const productUpdate =
   (product, formData) => async (dispatch, getState) => {
     dispatch({ type: actionType.PRODUCT_UPDATE_REQUEST, payload: product });
 
-    console.log(product);
     const { userInfo } = getState().signIn;
     try {
       const { data } = await instance.put(

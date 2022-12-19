@@ -44,7 +44,7 @@ export const Product = (props) => {
             <div className="image_container_back">
               <img
                 className="small"
-                src={`${props.product.imageURL}`}
+                src={`${props.product.imageZoomedURL}`}
                 alt={props.name}
               />
             </div>

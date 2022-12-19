@@ -35,20 +35,22 @@ const ProductEditpage = () => {
   const [countInStock, setCountInStock] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [imageZoomed, setImageZoomed] = useState("");
+
   // const [imgFile, setImgFile] = useState("");
 
-  const [imageLoading, setImageLoading] = useState("false");
-  const [imageError, setImageError] = useState("");
+  // const [imageLoading, setImageLoading] = useState("false");
+  // const [imageError, setImageError] = useState("");
 
   useEffect(() => {
     if (success) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
-      console.log("from reset useEffect", success);
+      // console.log("from reset useEffect", success);
 
       navigate("/productlist");
     }
     if (!product || product._id !== productId || success) {
-      console.log("from success useEffect", success);
+      // console.log("from success useEffect", success);
       dispatch(getProductDetails(productId));
     } else {
       setName(product.name);
@@ -77,8 +79,9 @@ const ProductEditpage = () => {
     formData.append("countInStock", countInStock);
     formData.append("description", description);
     formData.append("image", image);
+    formData.append("imageZoomed", imageZoomed);
 
-    console.log(image, "frm sub");
+    // console.log(image, "frm sub");
     // try {
     //   const { data } = await instance.post("/uploads", formData, {
     //     headers: {
@@ -256,6 +259,15 @@ const ProductEditpage = () => {
             id="image"
             placeholder="Choose Image"
             onChange={(e) => setImage(e.target.files[0])}
+          />
+        </div>
+        <div>
+          <label htmlFor="imageZoomed">Zoomed Image</label>
+          <input
+            type="file"
+            id="imageZoomed"
+            placeholder="Choose Image"
+            onChange={(e) => setImageZoomed(e.target.files[0])}
           />
         </div>
         <div>

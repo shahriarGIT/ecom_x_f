@@ -54,7 +54,6 @@ export const CartItems = () => {
                       src={`${x.imageURL}`}
                       alt={x.description}
                     />
-                    {console.log(x)}
                   </div>
                   <div>
                     <p>{x.name}</p>
@@ -104,7 +103,7 @@ export const CartItems = () => {
           <h2>Sub Total</h2>
           <ul>
             {cart.cartItems.map((x) => (
-              <li>
+              <li key={x.name}>
                 <p>
                   {x.name} = {x.quantity} x {x.price} = {x.quantity * x.price}
                 </p>

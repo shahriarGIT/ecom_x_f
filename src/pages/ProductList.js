@@ -53,7 +53,7 @@ const ProductList = () => {
     if (createSuccess) {
       dispatch({ type: PRODUCT_CREATE_RESET });
       navigate(`/product/${createdProduct.product._id}/edit`);
-      console.log(createdProduct);
+      // console.log(createdProduct);
     }
 
     if (productDeleteSuccess) {
@@ -64,9 +64,8 @@ const ProductList = () => {
   }, [productDeleteSuccess, createSuccess]);
 
   useEffect(() => {
-    console.log(fullPageRef);
-
-    console.log(fullPageRef.current?.offsetWidth);
+    // console.log(fullPageRef);
+    // console.log(fullPageRef.current?.offsetWidth);
   }, [fullPageRef.current?.offsetWidth]);
 
   return (
