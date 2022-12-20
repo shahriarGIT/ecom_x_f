@@ -914,9 +914,9 @@ img.large {
 
   .mobile__menu__header > button {
     width: 4rem;
-    background-color: #9aabd0;
+    /* background-color: #9aabd0;
     background-color: #7390cf;
-    background-color: #ba75f7;
+    background-color: #ba75f7; */
   }
 
   .mobile__menu__body {
@@ -1016,11 +1016,16 @@ img.large {
   }
   @keyframes animateHeight {
     from {
-      height: 0;
+      /* height: 0; */
+      transform: scaleY(0);
       opacity: 0;
+      transform-origin: top;
     }
     to {
-      height: 100%;
+      /* height: 75%; */
+      transform: scaleY(1);
+      transform-origin: top;
+
       opacity: 1;
     }
   }

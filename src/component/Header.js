@@ -112,7 +112,12 @@ export const Header = () => {
         )}
       </ul>
       <div className="mobile__menu__header">
-        <button onClick={isActiveDistach}>&#8595;</button>
+        <button
+          style={{ backgroundColor: userInfo ? "#1cd3c1" : "#ba75f7" }}
+          onClick={isActiveDistach}
+        >
+          &#8595;
+        </button>
       </div>
     </header>
   );
